@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BioStrip offers premium dissolvable peptide supplements for recovery, energy, metabolism and cognitive support. Practitioner-grade oral strips with rapid sublingual absorption.">
+  <meta name="keywords" content="peptide supplements, BPC-157, TB-500, NAD+, dissolvable strips, oral peptides, recovery supplements, energy supplements, metabolism support, cognitive enhancement, sublingual peptides">
+  <meta property="og:title" content="BioStrip - Premium Dissolvable Peptide Supplements">
+  <meta property="og:description" content="Practitioner-grade peptide strips designed for rapid absorption. No injections. No mixing. Just dissolve and go.">
+  <meta property="og:type" content="website">
+  <title>BioStrip - Premium Dissolvable Peptide Supplements | BPC-157, NAD+, Metabolism</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fafafa;
+      --surface: #ffffff;
+      --text: #1a1a1a;
+      --text-muted: #666666;
+      --accent: #0d9488;
+      --accent-dark: #0f766e;
+      --accent-light: #ccfbf1;
+      --border: #e5e5e5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* Nav */
+    nav {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .btn {
+      background: var(--accent);
+      color: var(--surface);
+      padding: 12px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+
+    .btn:hover {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 60px 0 60px;
+      text-align: center;
+      background: linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%);
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 500;
+      margin-bottom: 20px;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+
+    .hero h1 em {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      max-width: 580px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+
+    .hero .btn {
+      display: inline-block;
+    }
+
+    /* Products */
+    .products {
+      padding: 100px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .section-title h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.25rem;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+    }
+
+    .product-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 28px;
+      transition: all 0.4s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.06);
+      border-color: var(--accent-light);
+    }
+
+    .product-tag {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 2px;
+      font-size: 0.65rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 20px;
+    }
+
+    .product-card:nth-child(1) .product-tag { background: #ecfdf5; color: #059669; }
+    .product-card:nth-child(2) .product-tag { background: #eff6ff; color: #2563eb; }
+    .product-card:nth-child(3) .product-tag { background: #fffbeb; color: #d97706; }
+    .product-card:nth-child(4) .product-tag { background: #fdf2f8; color: #db2777; }
+
+    .product-image {
+      width: 100%;
+      height: 200px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 24px;
+      transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.08);
+    }
+
+    .product-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 400;
+      margin-bottom: 6px;
+      letter-spacing: 0.02em;
+    }
+
+    .product-card .flavor {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-bottom: 12px;
+      font-weight: 400;
+    }
+
+    .product-card .description {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      line-height: 1.6;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .product-card .price {
+      font-size: 1.35rem;
+      font-weight: 400;
+      color: var(--accent);
+      margin-bottom: 20px;
+      letter-spacing: 0.02em;
+    }
+
+    .product-card .btn {
+      display: block;
+      text-align: center;
+      background: var(--text);
+      color: var(--surface);
+    }
+
+    .product-card .btn:hover {
+      background: var(--accent);
+    }
+
+    /* About */
+    .about {
+      padding: 100px 0;
+      background: var(--surface);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .about h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.25rem;
+      font-weight: 500;
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .about p {
+      color: var(--text-muted);
+      margin-bottom: 18px;
+      font-size: 1.05rem;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .stat {
+      text-align: center;
+      padding: 28px 20px;
+      background: var(--bg);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .stat-num {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .stat-label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    /* Features */
+    .features {
+      padding: 100px 0;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 40px;
+    }
+
+    .feature {
+      text-align: center;
+      padding: 24px;
+    }
+
+    .feature-icon {
+      width: 52px;
+      height: 52px;
+      background: var(--accent-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+
+    .feature-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--accent);
+    }
+
+    .feature h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .feature p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Newsletter */
+    .newsletter {
+      padding: 100px 0;
+      background: var(--surface);
+      text-align: center;
+    }
+
+    .newsletter h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .newsletter p {
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    .newsletter form {
+      display: flex;
+      gap: 14px;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .newsletter input {
+      flex: 1;
+      padding: 14px 18px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+
+    .newsletter input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .newsletter button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .newsletter button:hover {
+      background: var(--accent-dark);
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    footer p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Product Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.95);
+      background: var(--surface);
+      border-radius: 8px;
+      width: 90%;
+      max-width: 700px;
+      max-height: 85vh;
+      overflow-y: auto;
+      z-index: 201;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+    }
+
+    .modal.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 32px;
+      height: 32px;
+      background: var(--bg);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    .modal-close svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--text);
+    }
+
+    .modal-content {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      padding: 32px;
+    }
+
+    .modal-image {
+      width: 100%;
+      height: 220px;
+      border-radius: 6px;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 16px;
+    }
+
+    .modal-details {
+      padding: 24px 0 0;
+    }
+
+    .modal-details h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 4px;
+    }
+
+    .modal-details .flavor {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-bottom: 12px;
+    }
+
+    .modal-details .price {
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .modal-details .description {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .modal-details .features {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .modal-details .features li {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .modal-details .features li::before {
+      content: '✓ ';
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .modal-details .btn {
+      display: block;
+      text-align: center;
+      padding: 14px;
+    }
+
+    .modal-details .disclaimer {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 14px;
+      line-height: 1.5;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero h1 { font-size: 2.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .stats { grid-template-columns: repeat(3, 1fr); }
+      .newsletter form { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="#" class="logo">Bio<span>Strip</span></a>
+      <ul class="nav-links">
+        <li><a href="#products">Products</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#science">Science</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#products" class="btn">Shop Now</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Supplements that <em>dissolve</em><br>the old way.</h1>
+      <p>Discover practitioner-grade peptide supplements in revolutionary dissolvable oral strips. Experience rapid sublingual absorption, zero injections, and zero hassle. Trusted by athletes, biohackers, and health-conscious individuals nationwide.</p>
+      <a href="#products" class="btn">Browse Products</a>
+    </div>
+  </section>
+
+  <section class="products" id="products">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Formulations</h2>
+        <p>Science-backed peptides. Practitioner-grade quality. The future of supplementation.</p>
+      </div>
+      <div class="products-grid">
+        <div class="product-card" data-product="1">
+          <span class="product-tag">Recovery</span>
+          <div class="product-image">
+            <img src="https://cdn.shopify.com/s/files/1/0860/5538/7170/files/P180wolverinestrips.png?v=1771088921" alt="Tissue Repair Complex - BPC-157 TB-500 Peptide Strips">
+          </div>
+          <h3>Tissue Repair Complex</h3>
+          <p class="flavor">Strawberry Watermelon • 30 Strips</p>
+          <p class="description">Dual-peptide formula combining BPC-157 (250mcg) and TB-500 (125mcg) per strip for tissue repair, joint health, and recovery support.</p>
+          <p class="price">$179</p>
+          <a href="#" class="btn">View Details</a>
+        </div>
+
+        <div class="product-card" data-product="2">
+          <span class="product-tag">Energy</span>
+          <div class="product-image">
+            <img src="https://cdn.shopify.com/s/files/1/0860/5538/7170/files/P180NAdStrips.png?v=1771089019" alt="Cellular NAD+ Support - Nicotinamide Riboside Strips">
+          </div>
+          <h3>Cellular NAD+ Support</h3>
+          <p class="flavor">Cool Mint • 30 Strips</p>
+          <p class="description">Nicotinamide riboside (NR) to boost NAD+ levels, support cellular energy, and combat age-related decline for sustainable vitality.</p>
+          <p class="price">$199</p>
+          <a href="#" class="btn">View Details</a>
+        </div>
+
+        <div class="product-card" data-product="4">
+          <span class="product-tag">Cognitive</span>
+          <div class="product-image">
+            <img src="https://cdn.shopify.com/s/files/1/0860/5538/7170/files/ChatGPT_Image_Feb_12_2026_at_06_51_39_PM.png?v=1771088986" alt="Neural Clarity Blend - Nootropic Strips">
+          </div>
+          <h3>Neural Clarity Blend</h3>
+          <p class="flavor">Mixed Berry • 30 Strips</p>
+          <p class="description">Cognitive support with neuroprotective compounds for enhanced focus, memory, and mental clarity throughout the day.</p>
+          <p class="price">$159</p>
+          <a href="#" class="btn">View Details</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div>
+          <h2>The Science of Dissolvable Peptides</h2>
+          <p>At BioStrip, we've engineered a delivery system that puts practitioner-grade peptides directly into your hands—no prescriptions, no needles, no mixing. We believe supplementation shouldn't require a medical degree.</p>
+          <p>Our dissolvable oral strips utilize sublingual absorption to deliver peptides directly through the oral mucosa into your bloodstream. This method bypasses the digestive system for significantly higher bioavailability than traditional oral supplements.</p>
+          <p>Every strip is pre-dosed with exact amounts of clinically studied ingredients at therapeutic doses. No measuring. No guessing. No injections. Just peel, dissolve, and experience the future of peptide supplementation.</p>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-num">99%</span>
+            <span class="stat-label">Bioavailability</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">30s</span>
+            <span class="stat-label">Time to Dissolve</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">0</span>
+            <span class="stat-label">Needles Required</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="container">
+      <div class="features-grid">
+        <div class="feature">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <h3>Rapid Absorption</h3>
+          <p>Oral mucosa delivery for faster bioavailability.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/></svg>
+          </div>
+          <h3>Pre-Dosed Precision</h3>
+          <p>Each strip contains exact amounts. No measuring.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Practitioner Grade</h3>
+          <p>Clinically studied peptides at therapeutic doses.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <h3>On-the-Go Use</h3>
+          <p>No water needed. Fits in your pocket.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="newsletter">
+    <div class="container">
+      <h2>Join the BioStrip Community</h2>
+      <p>Get exclusive access to new formulations, early releases, and subscriber-only discounts. Plus, receive our free peptide supplementation guide.</p>
+      <form>
+        <input type="email" placeholder="Enter your email address">
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 BioStrip. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Product Modal -->
+  <div class="modal-overlay" id="modalOverlay"></div>
+  <div class="modal" id="productModal">
+    <button class="modal-close" id="modalClose">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+        <path d="M18 6L6 18M6 6l12 12"/>
+      </svg>
+    </button>
+    <div class="modal-content">
+      <div class="modal-image">
+        <img id="modalImg" src="" alt="">
+      </div>
+      <div class="modal-details">
+        <span class="product-tag" id="modalTag"></span>
+        <h2 id="modalTitle"></h2>
+        <p class="flavor" id="modalFlavor"></p>
+        <p class="price" id="modalPrice"></p>
+        <p class="description" id="modalDesc"></p>
+        <ul class="features" id="modalFeatures"></ul>
+        <a href="#" class="btn" id="modalBtn">Add to Cart</a>
+        <p class="disclaimer">These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const products = [
+      {
+        id: 1,
+        tag: 'Recovery',
+        title: 'Tissue Repair Complex',
+        flavor: 'Strawberry Watermelon • 30 Strips',
+        price: '$179',
+        img: 'https://cdn.shopify.com/s/files/1/0860/5538/7170/files/P180wolverinestrips.png?v=1771088921',
+        desc: 'Engineered for peak performance and rapid recovery, the Tissue Repair Complex combines two of the most researched healing peptides—BPC-157 and TB-500—in one convenient dissolvable strip. These oral strips deliver therapeutic amounts directly through your oral mucosa, bypassing the need for injections or reconstitution.',
+        features: [
+          'Dual-Peptide Formula: BPC-157 (250mcg) + TB-500 (125mcg) per strip',
+          'Fast-Dissolving Oral Strips for sublingual absorption',
+          'Promotes Joint, Tendon & Ligament Recovery',
+          'Supports Natural Wound Healing & Tissue Repair',
+          'Great-Tasting Strawberry Watermelon Flavor',
+          '30 Strips Per Pack – One month supply',
+          'No Needles, No Mixing, No Refrigeration'
+        ]
+      },
+      {
+        id: 2,
+        tag: 'Energy',
+        title: 'Cellular NAD+ Support',
+        flavor: 'Cool Mint • 30 Strips',
+        price: '$199',
+        img: 'https://cdn.shopify.com/s/files/1/0860/5538/7170/files/P180NAdStrips.png?v=1771089019',
+        desc: 'Your cellular engine runs on NAD+. But after 30, this vital coenzyme declines by about 50%, leaving you feeling sluggish, foggy, and aged. NAD+ Recharge delivers nicotinamide riboside (NR) directly to your cells—supporting mitochondrial function, cognitive clarity, and sustainable energy without the jitters.',
+        features: [
+          'Nicotinamide Riboside (NR) – Bioavailable NAD+ precursor',
+          'Fast-Dissolving Oral Strips for superior absorption',
+          'Supports Cellular Energy & ATP Production',
+          'Promotes Healthy Metabolism & Mitochondrial Function',
+          'Refreshing Cool Mint Flavor',
+          '30 Strips Per Pack – Daily cellular support',
+          'Clean Energy Without Caffeine or Stimulants'
+        ]
+      },
+      {
+        id: 4,
+        tag: 'Cognitive',
+        title: 'Neural Clarity Blend',
+        flavor: 'Mixed Berry • 30 Strips',
+        price: '$159',
+        img: 'https://cdn.shopify.com/s/files/1/0860/5538/7170/files/ChatGPT_Image_Feb_12_2026_at_06_51_39_PM.png?v=1771088986',
+        desc: 'Think faster, focus longer, remember more. Neural Clarity Blend combines nootropic-supporting compounds in a delicious berry strip that dissolves in seconds. Perfect for demanding workdays, study sessions, or anyone seeking that mental edge.',
+        features: [
+          'Cognitive Support Formula with neuroprotective compounds',
+          'Great-Tasting Mixed Berry Flavor',
+          '30 Strips Per Pack – Daily mental performance support',
+          'Fast-Dissolving Oral Delivery for rapid onset',
+          'Supports Focus, Memory & Mental Clarity',
+          'No Water Required – Use anywhere, anytime',
+          'Practitioner-Grade Quality You Can Feel'
+        ]
+      }
+    ];
+
+    const modal = document.getElementById('productModal');
+    const overlay = document.getElementById('modalOverlay');
+    const closeBtn = document.getElementById('modalClose');
+
+    function openModal(productId) {
+      const product = products.find(p => p.id === productId);
+      if (!product) return;
+
+      document.getElementById('modalImg').src = product.img;
+      document.getElementById('modalTag').textContent = product.tag;
+      document.getElementById('modalTitle').textContent = product.title;
+      document.getElementById('modalFlavor').textContent = product.flavor;
+      document.getElementById('modalPrice').textContent = product.price;
+      document.getElementById('modalDesc').textContent = product.desc;
+      
+      const featuresList = document.getElementById('modalFeatures');
+      featuresList.innerHTML = product.features.map(f => `<li>${f}</li>`).join('');
+
+      overlay.classList.add('active');
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      overlay.classList.remove('active');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.product-card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (e.target.classList.contains('btn')) return;
+        const productId = parseInt(card.dataset.product);
+        openModal(productId);
+      });
+    });
+
+    document.querySelectorAll('.product-card .btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const card = btn.closest('.product-card');
+        const productId = parseInt(card.dataset.product);
+        openModal(productId);
+      });
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+</body>
+</html>

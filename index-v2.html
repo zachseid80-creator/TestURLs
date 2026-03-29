@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioStrip - Premium Dissolvable Peptide Supplements</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg-dark: #0a0a0b;
+            --bg-card: #141417;
+            --bg-card-hover: #1c1c21;
+            --accent: #10b981;
+            --accent-glow: #34d399;
+            --accent-secondary: #06b6d4;
+            --text: #fafafa;
+            --text-muted: #a1a1aa;
+            --border: #27272a;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(16, 185, 129, 0.6); }
+        }
+        
+        @keyframes slide-up {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Animated Background */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(16, 185, 129, 0.15), transparent),
+                radial-gradient(ellipse 60% 40% at 80% 60%, rgba(6, 182, 212, 0.1), transparent),
+                var(--bg-dark);
+            z-index: -1;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            background: rgba(10, 10, 11, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            animation: fade-in 0.8s ease;
+        }
+        
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--text);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .btn {
+            background: var(--accent);
+            color: var(--bg-dark);
+            padding: 12px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+        
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 40px 80px;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 700px;
+            animation: slide-up 1s ease 0.2s both;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-bottom: 24px;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -0.03em;
+        }
+        
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 500px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 60px;
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 48px;
+        }
+        
+        .stat {
+            text-align: left;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            font-family: 'Space Mono', monospace;
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        
+        .hero-visual {
+            position: absolute;
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 400px;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .product-float {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 32px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-float::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(180deg, rgba(16, 185, 129, 0.1), transparent);
+        }
+        
+        .product-float img {
+            width: 200px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .product-float h4 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+        
+        .product-float .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        /* Section */
+        .section {
+            padding: 100px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: slide-up 0.8s ease both;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+        
+        .product-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: slide-up 0.8s ease both;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 60px rgba(16, 185, 129, 0.15);
+        }
+        
+        .product-card:hover::before {
+            opacity: 1;
+        }
+        
+        .product-tag {
+            display: inline-block;
+            padding: 6px 14px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            margin-bottom: 24px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.02);
+        }
+        
+        .product-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .product-card .flavor {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+        }
+        
+        .product-card .description {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+        
+        .product-card .price {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-family: 'Space Mono', monospace;
+        }
+        
+        /* Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(6, 182, 212, 0.2));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+        
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        /* CTA */
+        .cta {
+            background: linear-gradient(135deg, var(--bg-card), var(--bg-dark));
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 80px 40px;
+            text-align: center;
+            margin: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+            animation: gradient-shift 8s linear infinite;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+        
+        .cta p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 32px;
+        }
+        
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 60px 40px 40px;
+            text-align: center;
+            color: var(--text-muted);
+        }
+        
+        footer p {
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero-visual { display: none; }
+            .nav-links { display: none; }
+            .hero-buttons { flex-direction: column; }
+            .hero-stats { flex-direction: column; gap: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">
+                <div class="logo-icon">💊</div>
+                BioStrip
+            </a>
+            <ul class="nav-links">
+                <li><a href="#products">Products</a></li>
+                <li><a href="#science">Science</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#products" class="btn">Shop Now</a>
+        </div>
+    </nav>
+    
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                ✨ Dissolvable Peptide Technology
+            </div>
+            <h1>Peptides That <span>Dissolve</span> On Your Tongue</h1>
+            <p>Practitioner-grade oral strips with rapid sublingual absorption. No injections. No mixing. Just dissolve and go.</p>
+            <div class="hero-buttons">
+                <a href="#products" class="btn">Explore Products</a>
+                <a href="#science" class="btn btn-outline">How It Works</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-value">99.9%</div>
+                    <div class="stat-label">Purity Verified</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">30min</div>
+                    <div class="stat-label">Absorption Time</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">50K+</div>
+                    <div class="stat-label">Orders Shipped</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="product-float">
+                <img src="https://cdn.shopify.com/s/files/1/0860/5538/7170/files/P180wolverinestrips.png?v=1771088921" alt="BioStrip Product">
+                <h4>Tissue Repair Complex</h4>
+                <p class="flavor">Strawberry Watermelon</p>
+                <div class="price">$179</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Products -->
+    <section id="products" class="section">
+        <div class="section-header">
+            <h2>Our Products</h2>
+            <p>Premium dissolvable peptides for recovery, energy, metabolism, and cognitive support.</p>
+        </div>
+        
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <span class="product-tag">Recovery</span>
+                <img class="product-image" src="https://cdn.shopify.com/s/files/1/0860/5538/7170/files/P180wolverinestrips.png?v=1771088921" alt="Tissue Repair Complex">
+                <h3>Tissue Repair Complex</h3>
+                <p class="flavor">Strawberry Watermelon • 30 Strips</p>
+                <p class="description">Dual-peptide formula combining BPC-157 (250mcg) and TB-500 (125mcg) per strip for tissue repair, joint health, and recovery support.</p>
+                <div class="price">$179</div>
+                <a href="#" class="btn">View Details</a>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product-card">
+                <span class="product-tag">Energy</span>
+                <img class="product-image" src="https://cdn.shopify.com/s/files/1/0860/5538/7170/files/P180NAdStrips.png?v=1771089019" alt="Cellular NAD+ Support">
+                <h3>Cellular NAD+ Support</h3>
+                <p class="flavor">Mint • 30 Strips</p>
+                <p class="description">Nicotinamide Riboside (NR) for cellular energy, metabolic health, and anti-aging support. 100mg per strip.</p>
+                <div class="price">$129</div>
+                <a href="#" class="btn">View Details</a>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="product-card">
+                <span class="product-tag">Cognitive</span>
+                <img class="product-image" src="https://cdn.shopify.com/s/files/1/0860/5538/7170/files/P180NeuralStrips.png?v=1771089019" alt="Neural Clarity Blend">
+                <h3>Neural Clarity Blend</h3>
+                <p class="flavor">Blueberry • 30 Strips</p>
+                <p class="description">Cognitive enhancement blend with Lion's Mane, Alpha GPC, and Bacopa for focus, memory, and mental clarity.</p>
+                <div class="price">$149</div>
+                <a href="#" class="btn">View Details</a>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="product-card">
+                <span class="product-tag">Metabolism</span>
+                <img class="product-image" src="https://cdn.shopify.com/s/files/1/0860/5538/7170/files/P180MetabolismStrips.png?v=1771089019" alt="Metabolic Reset">
+                <h3>Metabolic Reset</h3>
+                <p class="flavor">Citrus • 30 Strips</p>
+                <p class="description">GLP-1 supportive formula with Berberine, chromium, and green tea extract for metabolic optimization.</p>
+                <div class="price">$119</div>
+                <a href="#" class="btn">View Details</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features -->
+    <section id="science" class="section">
+        <div class="section-header">
+            <h2>Why BioStrip?</h2>
+            <p>The future of peptide supplementation is here.</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Rapid Absorption</h3>
+                <p>Sublingual delivery bypasses digestion for faster absorption. Feel results in as little as 30 minutes.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Pre-Dosed Precision</h3>
+                <p>Each strip contains exactly the right amount. No measuring, no mixing, no guesswork.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🩺</div>
+                <h3>Practitioner Grade</h3>
+                <p>Third-party tested for purity and potency. Made in FDA-registered facilities.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📦</div>
+                <h3>On-the-Go Use</h3>
+                <p>No refrigeration needed. Take anywhere, anytime. Perfect for travel and busy lifestyles.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA -->
+    <div class="cta">
+        <div class="cta-content">
+            <h2>Ready to Transform Your Health?</h2>
+            <p>Join thousands who've made the switch to dissolvable peptides.</p>
+            <a href="#products" class="btn">Shop Now</a>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 BioStrip. Research Use Only. Not for Human Consumption.</p>
+    </footer>
+    
+    <script>
+        // Smooth reveal animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'slide-up 0.8s ease both';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.product-card, .feature-card').forEach(el => {
+            el.style.animation = 'none';
+            observer.observe(el);
+        });
+        
+        // Nav background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(10, 10, 11, 0.95)';
+            } else {
+                nav.style.background = 'rgba(10, 10, 11, 0.8)';
+            }
+        });
+    </script>
+</body>
+</html>
