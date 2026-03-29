@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Video Analyzer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, #0a0a0b 0%, #1a1a2e 100%);
+            min-height: 100vh;
+            color: white;
+            padding: 40px 20px;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        
+        h1 { text-align: center; font-size: 2.5rem; margin-bottom: 10px; }
+        .subtitle { text-align: center; color: #888; margin-bottom: 40px; }
+        
+        .input-group { margin-bottom: 30px; }
+        input {
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 1rem;
+            border: 2px solid #333;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.05);
+            color: white;
+            outline: none;
+            transition: border 0.3s;
+        }
+        input:focus { border-color: #6366f1; }
+        input::placeholder { color: #666; }
+        
+        button {
+            width: 100%;
+            padding: 16px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4); }
+        .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+        
+        .output {
+            margin-top: 40px;
+            padding: 24px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+            display: none;
+        }
+        .output.show { display: block; }
+        
+        .video-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .info-card {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .info-card .value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #6366f1;
+        }
+        .info-card .label {
+            color: #888;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+        
+        .frames-section { margin-top: 30px; }
+        .frames-section h3 { margin-bottom: 16px; color: #888; }
+        .frames-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 12px;
+        }
+        .frame-card {
+            background: #111;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .frame-card:hover { transform: scale(1.05); }
+        .frame-card img {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+        .frame-card .timestamp {
+            padding: 8px;
+            font-size: 0.75rem;
+            color: #888;
+            text-align: center;
+        }
+        
+        .status {
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .status.processing {
+            background: rgba(234, 179, 8, 0.2);
+            border: 1px solid rgba(234, 179, 8, 0.3);
+            color: #eab308;
+        }
+        .status.success {
+            background: rgba(34, 197, 94, 0.2);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #22c55e;
+        }
+        .status.error {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+        }
+        
+        .download-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .download-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .download-btn {
+            padding: 10px 20px;
+            background: #333;
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+        .download-btn:hover { background: #444; }
+        
+        .transcription {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .transcription h4 { margin-bottom: 12px; color: #6366f1; }
+        .transcription p { line-height: 1.8; color: #ccc; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 YouTube Video Analyzer</h1>
+        <p class="subtitle">Extract frames, analyze content, and transcribe videos</p>
+        
+        <div class="input-group">
+            <input type="text" id="url" placeholder="Paste YouTube URL here (e.g., https://www.youtube.com/watch?v=...)">
+        </div>
+        
+        <button class="btn-primary" id="analyzeBtn" onclick="analyzeVideo()">
+            🔍 Analyze Video
+        </button>
+        
+        <div id="status" class="status" style="display:none;"></div>
+        
+        <div id="output" class="output">
+            <div id="videoInfo" class="video-info"></div>
+            
+            <div class="download-section">
+                <h4 style="margin-bottom:12px;color:#888;">Download Options:</h4>
+                <div id="downloadLinks" class="download-links"></div>
+            </div>
+            
+            <div id="transcription" class="transcription" style="display:none;">
+                <h4>📝 Transcription</h4>
+                <p id="transcriptionText"></p>
+            </div>
+            
+            <div id="framesSection" class="frames-section" style="display:none;">
+                <h3>🖼️ Extracted Frames</h3>
+                <div id="framesGrid" class="frames-grid"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        async function analyzeVideo() {
+            const url = document.getElementById('url').value.trim();
+            if (!url) { alert('Please enter a YouTube URL'); return; }
+            
+            const btn = document.getElementById('analyzeBtn');
+            const status = document.getElementById('status');
+            const output = document.getElementById('output');
+            
+            btn.disabled = true;
+            btn.textContent = '⏳ Processing...';
+            status.style.display = 'block';
+            status.className = 'status processing';
+            status.textContent = '📥 Downloading video...';
+            output.classList.remove('show');
+            
+            try {
+                // Call backend API
+                const response = await fetch('/api/analyze', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ url })
+                });
+                
+                const data = await response.json();
+                
+                if (data.error) throw new Error(data.error);
+                
+                // Show results
+                status.className = 'status success';
+                status.textContent = '✅ Analysis complete!';
+                output.classList.add('show');
+                
+                // Video info
+                document.getElementById('videoInfo').innerHTML = `
+                    <div class="info-card">
+                        <div class="value">${data.duration || 'N/A'}</div>
+                        <div class="label">Duration</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="value">${data.views || 'N/A'}</div>
+                        <div class="label">Views</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="value">${data.frames_extracted || 0}</div>
+                        <div class="label">Frames</div>
+                    </div>
+                `;
+                
+                // Download links
+                document.getElementById('downloadLinks').innerHTML = data.downloads.map(d => 
+                    `<a href="${d.url}" class="download-btn" target="_blank">${d.label}</a>`
+                ).join('');
+                
+                // Frames
+                if (data.frames && data.frames.length > 0) {
+                    document.getElementById('framesSection').style.display = 'block';
+                    document.getElementById('framesGrid').innerHTML = data.frames.map(f => 
+                        `<div class="frame-card">
+                            <img src="${f.url}" alt="${f.time}">
+                            <div class="timestamp">${f.time}</div>
+                        </div>`
+                    ).join('');
+                }
+                
+            } catch (error) {
+                status.className = 'status error';
+                status.textContent = '❌ Error: ' + error.message;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '🔍 Analyze Video';
+            }
+        }
+    </script>
+</body>
+</html>
